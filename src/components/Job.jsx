@@ -1,10 +1,10 @@
 import { Card } from 'react-bootstrap'
 import { Link, withRouter } from 'react-router-dom'
 
-const Job = ({ job, jobSelected }) => (
+const Job = ({ job, jobSelected, changeJob }) => (
     <Card
         className={jobSelected?.id === job.id ? "border-thick mt-3" : "mt-3"}
-        // onClick={() => changeBook(book)}
+        onClick={() => changeJob(job)}
         style={{ cursor: "pointer" }}
     >
         <Card.Body className="d-flex">

@@ -1,7 +1,8 @@
 import { Component } from "react"
 import JobList from "./JobList"
-import { Row } from 'react-bootstrap'
+import { Col, Row } from 'react-bootstrap'
 import SearchBar from "./SearchBar"
+import JobDetail from "./JobDetail"
 
 class Results extends Component {
     state = {
@@ -42,6 +43,12 @@ class Results extends Component {
         })
     }
 
+    changeJob = (job) => {
+        this.setState({
+            jobSelected: job,
+        })
+    }
+
     render() { 
         return (
             <>
@@ -49,10 +56,15 @@ class Results extends Component {
                     <SearchBar query={this.state.query} inputChange={this.inputChange} fecthJobs={this.fecthJobs} />
                 </Row>
                 <Row>
-                    {this.state.isLoading
-                        ? <> Loading... </>
-                        : <JobList jobs={this.state.jobs} jobSelected={this.state.jobSelected} />
-                    }
+                    <Col md={4} >
+                        {this.state.isLoading
+                            ? <> Loading... </>
+                            : <JobList jobs={this.state.jobs} jobSelected={this.state.jobSelected} changeJob={this.changeJob} />
+                        }
+                    </Col>
+                    <Col md={8} >
+                        <JobDetail jobSelected={this.state.jobSelected} />
+                    </Col>
                 </Row>
             </>
         );
