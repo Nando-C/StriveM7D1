@@ -52,9 +52,9 @@ class Results extends Component {
     render() { 
         return (
             <>
-                <Row>
+                {/* <Row> */}
                     <SearchBar query={this.state.query} inputChange={this.inputChange} fecthJobs={this.fecthJobs} />
-                </Row>
+                {/* </Row> */}
                 <Row>
                     <Col md={4} >
                         {this.state.isLoading

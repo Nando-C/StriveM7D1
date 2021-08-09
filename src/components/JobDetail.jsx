@@ -72,7 +72,7 @@ class JobDetail extends Component {
                     </>
                     : <Row>
                         <Col sm={12} >
-                            <h3>Please select a job to see all details</h3>
+                            <h3>Please select a job to see the full description</h3>
                         </Col>
                     </Row>
             }
