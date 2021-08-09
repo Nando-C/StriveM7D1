@@ -1,6 +1,8 @@
 import { Component } from 'react'
-import { Row } from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
+import JobDetail from './JobDetail'
 import JobList from './JobList'
+
 
 class CompanyDetail extends Component {
     state = {  
@@ -34,13 +36,24 @@ class CompanyDetail extends Component {
         this.fetchCompany()
     }
 
+    changeJob = (job) => {
+        this.setState({
+            jobSelected: job,
+        })
+    }
+
     render() { 
         return (  
              <Row>
-                {this.state.isLoading 
-                ? <> Loading... </>
-                : <JobList jobs={this.state.compJobs} jobSelected={this.state.jobSelected} />
-                }
+                <Col md={4} >
+                    {this.state.isLoading
+                        ? <> Loading... </>
+                        : <JobList jobs={this.state.compJobs} jobSelected={this.state.jobSelected} changeJob={this.changeJob} />
+                    }
+                </Col>
+                <Col md={8} >
+                        <JobDetail jobSelected={this.state.jobSelected} />
+                </Col>
             </Row>
         );
     }

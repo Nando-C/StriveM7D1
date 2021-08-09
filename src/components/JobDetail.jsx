@@ -1,5 +1,5 @@
 import { Component } from 'react'
-import { Row, Col } from 'react-bootstrap'
+import { Row, Col, Image } from 'react-bootstrap'
 
 class JobDetail extends Component {
     state = {  
@@ -30,7 +30,7 @@ class JobDetail extends Component {
                         <Row className="mt-3">
                             <Col sm={4}>
                                 <div className="mt-3">
-                                    <img className="book-cover" src={this.state.job.company_logo_url} alt="job selected" />
+                                    <Image className="book-cover" src={this.state.job.company_logo_url} alt="job selected" fluid/>
                                 </div>
                             </Col>
                             <Col sm={8}>

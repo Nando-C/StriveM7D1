@@ -8,7 +8,7 @@ const Job = ({ job, jobSelected, changeJob }) => (
         style={{ cursor: "pointer" }}
     >
         <Card.Body className="d-flex">
-            <Link to='/company-detail'>
+            <Link to={"/company-detail/" + job.company_name}>
                 <img className="book-image" src={job.company_logo_url} alt="company logo" />
             </Link>
             <div>
