@@ -9,7 +9,7 @@ class Results extends Component {
         isLoading: true
     }
 
-    componentDidMount = async () => {
+    fecthJobs = async () => {
         try {
             let response = await fetch(
                 `https://remotive.io/api/remote-jobs?limit=10`
@@ -29,6 +29,11 @@ class Results extends Component {
             console.log(error)
         }
     }
+
+    componentDidMount = () => {
+       this.fecthJobs()
+    }
+    
     render() { 
         return (
             <Row>
