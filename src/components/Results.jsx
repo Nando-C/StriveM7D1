@@ -35,7 +35,6 @@ class Results extends Component {
                 {this.state.isLoading 
                 ? <> Loading... </>
                 : <JobList jobs={this.state.jobs} jobSelected={this.state.jobSelected} />
-                // : <> {this.state.jobs[0]}</>
                 }
             </Row>
         );
