@@ -1,18 +1,20 @@
 import { Component } from "react"
 import JobList from "./JobList"
 import { Row } from 'react-bootstrap'
+import SearchBar from "./SearchBar"
 
 class Results extends Component {
     state = {
         jobs: [],
         jobSelected: null,
+        query: '',
         isLoading: true
     }
 
-    fecthJobs = async () => {
+    fecthJobs = async (query = "&limit=10") => {
         try {
             let response = await fetch(
-                `https://remotive.io/api/remote-jobs?limit=10`
+                `https://remotive.io/api/remote-jobs?search=${query}`
             )
             if (response.ok) {
                 let results = await response.json()
@@ -33,15 +35,26 @@ class Results extends Component {
     componentDidMount = () => {
        this.fecthJobs()
     }
-    
+
+    inputChange = (e) => {
+        this.setState({
+            query: e.target.value
+        })
+    }
+
     render() { 
         return (
-            <Row>
-                {this.state.isLoading 
-                ? <> Loading... </>
-                : <JobList jobs={this.state.jobs} jobSelected={this.state.jobSelected} />
-                }
-            </Row>
+            <>
+                <Row>
+                    <SearchBar query={this.state.query} inputChange={this.inputChange} fecthJobs={this.fecthJobs} />
+                </Row>
+                <Row>
+                    {this.state.isLoading
+                        ? <> Loading... </>
+                        : <JobList jobs={this.state.jobs} jobSelected={this.state.jobSelected} />
+                    }
+                </Row>
+            </>
         );
     }
 }
