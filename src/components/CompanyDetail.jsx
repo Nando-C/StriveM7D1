@@ -1,6 +1,13 @@
 import { Component } from 'react'
+import { Row } from 'react-bootstrap'
+import JobList from './JobList'
+
 class CompanyDetail extends Component {
-    state = {  }
+    state = {  
+        compJobs: [],
+        jobSelected: null,
+        isLoading: true
+    }
 
     fetchCompany = async () => {
        try {
@@ -11,6 +18,10 @@ class CompanyDetail extends Component {
         if (response.ok) {
             let companyJobs = await response.json()
             console.log(companyJobs)
+            this.setState({ 
+                compJobs: companyJobs.jobs, 
+                isLoading: false
+            })
         } else {
             console.log('Something went wrong fetching company jobs')
         }
@@ -18,14 +29,19 @@ class CompanyDetail extends Component {
            console.log(error);
        }
     }
+
     componentDidMount = () => {
         this.fetchCompany()
     }
+
     render() { 
         return (  
-            <>
-            Company Jobs Listing
-            </>
+             <Row>
+                {this.state.isLoading 
+                ? <> Loading... </>
+                : <JobList jobs={this.state.compJobs} jobSelected={this.state.jobSelected} />
+                }
+            </Row>
         );
     }
 }
