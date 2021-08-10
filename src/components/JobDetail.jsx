@@ -30,7 +30,7 @@ class JobDetail extends Component {
                         <Row className="mt-3">
                             <Col sm={4}>
                                 <div className="mt-3">
-                                    <Image className="book-cover" src={this.state.job.company_logo_url} alt="job selected" fluid/>
+                                    <Image className="book-cover" src={this.state.job.company_logo_url ? this.state.job.company_logo_url : 'https://image.shutterstock.com/image-illustration/colourful-business-logo-company-name-260nw-1632621202.jpg'} alt="job selected" fluid/>
                                 </div>
                             </Col>
                             <Col sm={8}>
@@ -63,7 +63,7 @@ class JobDetail extends Component {
                         <Row className='my-4'>
                             <Col sm={12} >
                                 <p>
-                                    <span className="font-weight-bold">Description:</span><br/>
+                                    {/* <span className="font-weight-bold">Description:</span><br/> */}
                                     <div className='mt-2' dangerouslySetInnerHTML={this.jobDescription()} />
                                 </p>
                             </Col>

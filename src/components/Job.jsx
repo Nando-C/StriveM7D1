@@ -9,7 +9,10 @@ const Job = ({ job, jobSelected, changeJob }) => (
     >
         <Card.Body className="d-flex">
             <Link to={"/company-detail/" + job.company_name}>
-                <img className="book-image" src={job.company_logo_url} alt="company logo" />
+                <img 
+                className="book-image" 
+                src={job.company_logo_url ? job.company_logo_url : 'https://image.shutterstock.com/image-illustration/colourful-business-logo-company-name-260nw-1632621202.jpg'} 
+                alt="company logo" />
             </Link>
             <div>
                 <Card.Text className="font-weight-bold">{job.title}</Card.Text>
